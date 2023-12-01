@@ -35,6 +35,6 @@ public class Member extends SysTimeCols {
     private String contact;
 
     @Column(nullable = false)
-    private Integer balance;
-
+    @Builder.Default
+    private Integer balance = 0;
 }

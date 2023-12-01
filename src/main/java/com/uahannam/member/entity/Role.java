@@ -3,7 +3,6 @@ package com.uahannam.member.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-
 @Entity
 @Getter
 @Builder

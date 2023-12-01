@@ -19,4 +19,6 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
             "from Member m JOIN m.role r " +
             "where m.id = :memberId")
     MemberDto findMemberByIdAsDto(Integer memberId);
+
+    boolean existsByEmail(String email);
 }

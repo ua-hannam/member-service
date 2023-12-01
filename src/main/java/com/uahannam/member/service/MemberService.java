@@ -1,11 +1,13 @@
 package com.uahannam.member.service;
 
+import com.uahannam.member.dto.MemberRegiRespDto;
+import com.uahannam.member.dto.MemberRegiReqDto;
 import com.uahannam.member.dto.MemberResponseDto;
+import com.uahannam.member.exception.CustomException;
+import com.uahannam.member.exception.ErrorCode;
 import com.uahannam.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -19,5 +21,19 @@ public class MemberService {
 
     public MemberResponseDto getMemberById(Integer memberId) {
         return new MemberResponseDto(memberRepository.findMemberByIdAsDto(memberId));
+    }
+
+    public MemberRegiRespDto registerMember(MemberRegiReqDto memberRegiReqDto) {
+        if (memberRepository.existsByEmail(memberRegiReqDto.getEmail()))
+            throw new CustomException(ErrorCode.EMAIL_ALREADY_EXISTS, "이미 사용 중인 이메일 입니다.");
+
+        // 비밀번호 암호화, 강도 체크 등등
+
+        memberRepository.save(memberRegiReqDto.mapToMember());
+
+        // 토큰 생성
+        String token = "";
+
+        return new MemberRegiRespDto("회원가입이 성공적으로 이뤄졌습니다", token);
     }
 }
