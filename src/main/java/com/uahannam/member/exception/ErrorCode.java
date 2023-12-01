@@ -13,6 +13,7 @@ public enum ErrorCode {
     MEMBER_IDS_IS_EMPTY_OR_NULL(HttpStatus.BAD_REQUEST, "멤버 ID 목록이 비어있거나 null 입니다: %s"),
     INVALID_MEMBER_ID_IS_INCLUDED(HttpStatus.BAD_REQUEST, "유효하지 않은 멤버 ID 가 포함되어 있습니다."),
     FILED_VALIDATION_FAILED(HttpStatus.BAD_REQUEST, "필드값이 유효하지 않습니다."),
+    INVALID_PASSWORD(HttpStatus.BAD_REQUEST, "비밀번호가 일치하지 않습니다."),
 
     /* 404 NOT FOUND : Resource 를 찾을 수 없음 */
     MEMBER_NOT_FOUND_BY_ID(HttpStatus.NOT_FOUND, "해당 멤버 ID가 없습니다: %s"),
@@ -28,4 +29,4 @@ public enum ErrorCode {
 
     private final HttpStatus httpStatus;
     private final String detail; // %s 가 포함된 detail
-}
+    }

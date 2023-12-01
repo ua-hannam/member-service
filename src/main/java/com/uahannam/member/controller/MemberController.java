@@ -17,12 +17,6 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    @PostMapping("/register")
-    public ResponseEntity<?> registerMember(@RequestBody @Valid MemberRegiReqDto memberRegiReqDto) {
-        MemberRegiRespDto response = memberService.registerMember(memberRegiReqDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
-    }
-
     @GetMapping("/{memberId}")
     public ResponseEntity<MemberResponseDto> getMember(@PathVariable Integer memberId) {
         MemberResponseDto memberById = memberService.getMemberById(memberId);
