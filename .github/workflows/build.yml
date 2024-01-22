@@ -2,7 +2,7 @@ name: BackEnd - CI
 on:
   push:
     branches:
-      - manin
+      - main
   pull_request:
     branches: [main, dev]
     types: [opened, synchronize, reopened]
