@@ -1,8 +1,11 @@
 package com.uahannam.member.controller;
 
+import com.uahannam.member.dto.request.RegiReqDto;
+import com.uahannam.member.dto.response.RegiRespDto;
 import com.uahannam.member.dto.response.RespDto;
 import com.uahannam.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,4 +28,9 @@ public class MemberController {
         return ResponseEntity.ok(allMembers);
     }
 
+    @PostMapping
+    public ResponseEntity<RegiRespDto> registerMember(@RequestBody RegiReqDto reqDto) {
+        RegiRespDto regiResp = memberService.registerMember(reqDto);
+        return new ResponseEntity<>(regiResp, HttpStatus.CREATED);
+    }
 }
