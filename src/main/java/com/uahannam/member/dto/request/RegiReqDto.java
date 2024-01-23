@@ -1,10 +1,10 @@
-package com.uahannam.member.dto;
+package com.uahannam.member.dto.request;
 
 import com.uahannam.member.entity.Member;
 import lombok.Getter;
 
 @Getter
-public class MemberRegiReqDto {
+public class RegiReqDto {
     private String nickname;
     private String email;
     private String password;

@@ -1,8 +1,8 @@
 package com.uahannam.member.controller;
 
-import com.uahannam.member.dto.LoginRequestDto;
-import com.uahannam.member.dto.MemberRegiReqDto;
-import com.uahannam.member.dto.MemberRegiRespDto;
+import com.uahannam.member.dto.request.LoginReqDto;
+import com.uahannam.member.dto.request.RegiReqDto;
+import com.uahannam.member.dto.response.RegiRespDto;
 import com.uahannam.member.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -21,14 +21,14 @@ public class AuthController {
     private final MemberService memberService;
 
     @PostMapping("/register")
-    public ResponseEntity<MemberRegiRespDto> registerMember(@RequestBody @Valid MemberRegiReqDto memberRegiReqDto) {
-        MemberRegiRespDto response = memberService.registerMember(memberRegiReqDto);
+    public ResponseEntity<RegiRespDto> registerMember(@RequestBody @Valid RegiReqDto regiReqDto) {
+        RegiRespDto response = memberService.registerMember(regiReqDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<MemberRegiRespDto> login(@RequestBody LoginRequestDto loginRequestDto) {
-        MemberRegiRespDto result = memberService.login(loginRequestDto); // MemberRegiRespDto 는 재사용성이 있어 네이밍 바꿔야함
+    public ResponseEntity<RegiRespDto> login(@RequestBody LoginReqDto loginReqDto) {
+        RegiRespDto result = memberService.login(loginReqDto); // MemberRegiRespDto 는 재사용성이 있어 네이밍 바꿔야함
         return ResponseEntity.ok(result);
     }
 }
