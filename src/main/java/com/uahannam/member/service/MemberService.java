@@ -34,9 +34,14 @@ public class MemberService {
         memberRepository.save(regiReqDto.mapToMember());
 
         // 토큰 생성
-        String token = "";
+        String accessToken = "accessToken";
+        String refreshToken = "refreshToken";
 
-        return new LoginRegiDto("회원가입이 성공적으로 이뤄졌습니다", token);
+        return LoginRegiDto.builder()
+                .message("Registered Successfully")
+                .accessToken(accessToken)
+                .refreshToken(refreshToken)
+                .build();
     }
 
     public LoginRegiDto login(LoginReqDto loginReqDto) {
@@ -46,8 +51,13 @@ public class MemberService {
             throw new CustomException(ErrorCode.INVALID_PASSWORD);
 
         // token 생성
-        String token = "";
+        String accessToken = "accessToken";
+        String refreshToken = "refreshToken";
 
-        return new LoginRegiDto("로그인 되었습니다", token);
+        return LoginRegiDto.builder()
+                .message("Logined Successfully")
+                .accessToken(accessToken)
+                .refreshToken(refreshToken)
+                .build();
     }
 }
