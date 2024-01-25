@@ -1,5 +1,6 @@
 package com.uahannam.member.controller;
 
+import com.uahannam.member.dto.request.LoginReqDto;
 import com.uahannam.member.dto.request.RegiReqDto;
 import com.uahannam.member.dto.response.RegiRespDto;
 import com.uahannam.member.dto.response.RespDto;
@@ -28,9 +29,15 @@ public class MemberController {
         return ResponseEntity.ok(allMembers);
     }
 
-    @PostMapping
-    public ResponseEntity<RegiRespDto> registerMember(@RequestBody RegiReqDto reqDto) {
-        RegiRespDto regiResp = memberService.registerMember(reqDto);
+    @PostMapping("/register")
+    public ResponseEntity<RegiRespDto> register(@RequestBody RegiReqDto regiReqDto) {
+        RegiRespDto regiResp = memberService.registerMember(regiReqDto);
         return new ResponseEntity<>(regiResp, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<RegiRespDto> login(@RequestBody LoginReqDto loginReqDto) {
+        RegiRespDto loginResp = memberService.login(loginReqDto);
+        return new ResponseEntity<>(loginResp, HttpStatus.OK);
     }
 }
