@@ -1,7 +1,7 @@
 package com.uahannam.member.service;
 
 import com.uahannam.member.dto.request.LoginReqDto;
-import com.uahannam.member.dto.response.RegiRespDto;
+import com.uahannam.member.dto.response.LoginRegiDto;
 import com.uahannam.member.dto.request.RegiReqDto;
 import com.uahannam.member.dto.response.RespDto;
 import com.uahannam.member.entity.Member;
@@ -25,7 +25,7 @@ public class MemberService {
         return new RespDto(memberRepository.findMemberByIdAsDto(memberId));
     }
 
-    public RegiRespDto registerMember(RegiReqDto regiReqDto) {
+    public LoginRegiDto registerMember(RegiReqDto regiReqDto) {
         if (memberRepository.existsByEmail(regiReqDto.getEmail()))
             throw new CustomException(ErrorCode.EMAIL_ALREADY_EXISTS, "이미 사용 중인 이메일 입니다.");
 
@@ -36,10 +36,10 @@ public class MemberService {
         // 토큰 생성
         String token = "";
 
-        return new RegiRespDto("회원가입이 성공적으로 이뤄졌습니다", token);
+        return new LoginRegiDto("회원가입이 성공적으로 이뤄졌습니다", token);
     }
 
-    public RegiRespDto login(LoginReqDto loginReqDto) {
+    public LoginRegiDto login(LoginReqDto loginReqDto) {
         Member member = memberRepository.findByEmail(loginReqDto.getEmail());
 
         if (!member.getPassword().matches(loginReqDto.getPassword()))
@@ -48,6 +48,6 @@ public class MemberService {
         // token 생성
         String token = "";
 
-        return new RegiRespDto("로그인 되었습니다", token);
+        return new LoginRegiDto("로그인 되었습니다", token);
     }
 }
