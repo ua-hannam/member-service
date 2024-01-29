@@ -1,6 +1,6 @@
 package com.uahannam.member.dto.response;
 
-import com.uahannam.member.dto.MemberDto;
+import com.uahannam.member.dto.query.MemberDto;
 import lombok.Getter;
 
 import java.util.ArrayList;

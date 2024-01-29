@@ -1,6 +1,6 @@
 package com.uahannam.member.repository;
 
-import com.uahannam.member.dto.MemberDto;
+import com.uahannam.member.dto.query.MemberDto;
 import com.uahannam.member.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

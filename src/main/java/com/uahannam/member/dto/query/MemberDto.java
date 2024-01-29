@@ -1,4 +1,4 @@
-package com.uahannam.member.dto;
+package com.uahannam.member.dto.query;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
