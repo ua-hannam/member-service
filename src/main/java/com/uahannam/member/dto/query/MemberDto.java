@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 public class MemberDto {
 
     private String email;
@@ -14,13 +15,4 @@ public class MemberDto {
     private String contact;
     private String nickname;
     private Integer balance;
-
-    public MemberDto(String email, String name, String role, String contact, String nickname, Integer balance) {
-        this.email = email;
-        this.name = name;
-        this.role = role;
-        this.contact = contact;
-        this.nickname = nickname;
-        this.balance = balance;
-    }
 }

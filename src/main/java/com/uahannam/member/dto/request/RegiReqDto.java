@@ -2,9 +2,11 @@ package com.uahannam.member.dto.request;
 
 import com.uahannam.member.entity.Member;
 import com.uahannam.member.entity.Role;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
+@AllArgsConstructor
 public class RegiReqDto {
     private String nickname;
     private String email;
