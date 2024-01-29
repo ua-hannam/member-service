@@ -37,4 +37,17 @@ public class Member extends SysTimeCols {
     @Column(nullable = false)
     @Builder.Default
     private Integer balance = 0;
+
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
 }

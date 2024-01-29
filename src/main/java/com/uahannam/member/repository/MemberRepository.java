@@ -12,7 +12,7 @@ import java.util.List;
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
     @Query("SELECT new com.uahannam.member.dto.MemberDto(m.email, m.name, r.roleName, m.contact, m.nickname, m.balance) " +
-            "FROM Member m JOIN m.role r")
+            "FROM Member m LEFT JOIN m.role r")
     List<MemberDto> findAllMembersAsDto();
 
     @Query("select new com.uahannam.member.dto.MemberDto(m.email, m.name, r.roleName, m.contact, m.nickname, m.balance) " +

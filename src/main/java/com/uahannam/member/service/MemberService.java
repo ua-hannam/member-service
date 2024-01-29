@@ -1,7 +1,9 @@
 package com.uahannam.member.service;
 
+import com.uahannam.member.dto.MemberDto;
 import com.uahannam.member.dto.request.LoginReqDto;
-import com.uahannam.member.dto.response.LoginRegiDto;
+import com.uahannam.member.dto.request.UpdateMemberReqDto;
+import com.uahannam.member.dto.response.LoginRegiResDto;
 import com.uahannam.member.dto.request.RegiReqDto;
 import com.uahannam.member.dto.response.RespDto;
 import com.uahannam.member.entity.Member;
@@ -25,7 +27,7 @@ public class MemberService {
         return new RespDto(memberRepository.findMemberByIdAsDto(memberId));
     }
 
-    public LoginRegiDto registerMember(RegiReqDto regiReqDto) {
+    public LoginRegiResDto registerMember(RegiReqDto regiReqDto) {
         if (memberRepository.existsByEmail(regiReqDto.getEmail()))
             throw new CustomException(ErrorCode.EMAIL_ALREADY_EXISTS, "이미 사용 중인 이메일 입니다.");
 
@@ -37,14 +39,14 @@ public class MemberService {
         String accessToken = "accessToken";
         String refreshToken = "refreshToken";
 
-        return LoginRegiDto.builder()
+        return LoginRegiResDto.builder()
                 .message("Registered Successfully")
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
                 .build();
     }
 
-    public LoginRegiDto login(LoginReqDto loginReqDto) {
+    public LoginRegiResDto login(LoginReqDto loginReqDto) {
         Member member = memberRepository.findByEmail(loginReqDto.getEmail());
 
         if (!member.getPassword().matches(loginReqDto.getPassword()))
@@ -54,10 +56,17 @@ public class MemberService {
         String accessToken = "accessToken";
         String refreshToken = "refreshToken";
 
-        return LoginRegiDto.builder()
+        return LoginRegiResDto.builder()
                 .message("Logined Successfully")
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
                 .build();
+    }
+
+    public void updateMember(UpdateMemberReqDto updateDto, Long memberId) {
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new CustomException(ErrorCode.MEMBER_NOT_FOUND_BY_ID));
+        // 업데이트 로직: DTO의 값을 엔티티에 적용
+        updateDto.updateMemberEntity(member);
     }
 }

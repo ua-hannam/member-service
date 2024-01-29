@@ -2,7 +2,8 @@ package com.uahannam.member.controller;
 
 import com.uahannam.member.dto.request.LoginReqDto;
 import com.uahannam.member.dto.request.RegiReqDto;
-import com.uahannam.member.dto.response.LoginRegiDto;
+import com.uahannam.member.dto.request.UpdateMemberReqDto;
+import com.uahannam.member.dto.response.LoginRegiResDto;
 import com.uahannam.member.dto.response.RespDto;
 import com.uahannam.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -30,14 +31,20 @@ public class MemberController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<LoginRegiDto> register(@RequestBody RegiReqDto regiReqDto) {
-        LoginRegiDto regiResp = memberService.registerMember(regiReqDto);
+    public ResponseEntity<LoginRegiResDto> register(@RequestBody RegiReqDto regiReqDto) {
+        LoginRegiResDto regiResp = memberService.registerMember(regiReqDto);
         return new ResponseEntity<>(regiResp, HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginRegiDto> login(@RequestBody LoginReqDto loginReqDto) {
-        LoginRegiDto loginResp = memberService.login(loginReqDto);
+    public ResponseEntity<LoginRegiResDto> login(@RequestBody LoginReqDto loginReqDto) {
+        LoginRegiResDto loginResp = memberService.login(loginReqDto);
         return new ResponseEntity<>(loginResp, HttpStatus.OK);
+    }
+
+    @PutMapping("/{memberId}")
+    public ResponseEntity update(@RequestBody UpdateMemberReqDto updateDto, @PathVariable Long memberId) {
+        memberService.updateMember(updateDto, memberId);
+        return ResponseEntity.ok(updateDto);
     }
 }
