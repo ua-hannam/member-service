@@ -73,9 +73,6 @@ public class MemberService {
     public void updateMember(UpdateReqDto updateDto, Long memberId) {
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new CustomException(ErrorCode.MEMBER_NOT_FOUND_BY_ID));
-        System.out.println("============================================="+member.getNickname());
-        // 업데이트 로직: DTO의 값을 엔티티에 적용
         updateDto.updateMemberEntity(member);
-        System.out.println("============================================="+member.getNickname());
     }
 }
