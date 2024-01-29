@@ -10,13 +10,13 @@ public class UpdateReqDto {
     private String contact;
 
     public void updateMemberEntity(Member member) {
-        if (!nickname.equals(""))
+        if (nickname != null && !nickname.isEmpty())
             member.setNickname(nickname);
 
-        if (!password.equals(""))
+        if (password != null && !password.isEmpty())
             member.setPassword(password);
 
-        if (!contact.equals(""))
+        if (contact != null && !contact.isEmpty())
             member.setContact(contact);
     }
 }

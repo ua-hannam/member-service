@@ -11,16 +11,16 @@ public class RegiReqDto {
     private String password;
     private String name;
     private String contact;
-    private Role role;
+    private Long role;
 
-    public Member mapToMember() {
+    public Member mapToMember(Role role) {
         return Member.builder()
                 .nickname(this.nickname)
                 .email(this.email)
                 .password(this.password)
                 .name(this.name)
                 .contact(this.contact)
-                .role(this.role)
+                .role(role)
                 .build();
     }
 

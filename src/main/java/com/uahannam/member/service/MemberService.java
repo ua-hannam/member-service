@@ -6,17 +6,23 @@ import com.uahannam.member.dto.response.LoginRegiResDto;
 import com.uahannam.member.dto.request.RegiReqDto;
 import com.uahannam.member.dto.response.RespDto;
 import com.uahannam.member.entity.Member;
+import com.uahannam.member.entity.Role;
 import com.uahannam.member.exception.CustomException;
 import com.uahannam.member.exception.ErrorCode;
 import com.uahannam.member.repository.MemberRepository;
+import com.uahannam.member.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class MemberService {
 
     private final MemberRepository memberRepository;
+
+    private final RoleRepository roleRepository;
 
     public RespDto getAllMembers() {
         return new RespDto(memberRepository.findAllMembersAsDto());
@@ -32,7 +38,9 @@ public class MemberService {
 
         // 비밀번호 암호화, 강도 체크 등등
 
-        memberRepository.save(regiReqDto.mapToMember());
+        Role role = roleRepository.findById(regiReqDto.getRole())
+                .orElseThrow(() -> new CustomException(ErrorCode.ROLE_NOT_FOUND_BY_ID));
+        memberRepository.save(regiReqDto.mapToMember(role));
 
         // 토큰 생성
         String accessToken = "accessToken";
@@ -65,7 +73,9 @@ public class MemberService {
     public void updateMember(UpdateReqDto updateDto, Long memberId) {
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new CustomException(ErrorCode.MEMBER_NOT_FOUND_BY_ID));
+        System.out.println("============================================="+member.getNickname());
         // 업데이트 로직: DTO의 값을 엔티티에 적용
         updateDto.updateMemberEntity(member);
+        System.out.println("============================================="+member.getNickname());
     }
 }

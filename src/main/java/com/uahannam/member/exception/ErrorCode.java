@@ -20,6 +20,7 @@ public enum ErrorCode {
     MEMBER_NOT_FOUND_BY_NAME(HttpStatus.NOT_FOUND, "해당 멤버 이름이 없습니다: %s"),
     POST_NOT_FOUND_BY_ID(HttpStatus.NOT_FOUND, "해당 게시물 ID가 없습니다: %s"),
     COMMENT_NOT_FOUND_BY_ID(HttpStatus.NOT_FOUND, "해당 댓글 ID가 없습니다: %s"),
+    ROLE_NOT_FOUND_BY_ID(HttpStatus.NOT_FOUND, "해당 Role 은 존재하지 않는 Role 입니다: %s"),
 
     /* 409 CONFLICT */
     EMAIL_ALREADY_EXISTS(HttpStatus.CONFLICT, "해당 이메일은 이미 존재합니다: %s");
