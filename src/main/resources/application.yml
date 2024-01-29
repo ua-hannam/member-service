@@ -10,7 +10,7 @@ spring:
     driver-class-name: org.h2.Driver
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         timezone.default_storage: NORMALIZE # 3.x ???? ???? DEFAULT(UTC) ? ???? NORMALIZE(JVM ?? ??) ???.
