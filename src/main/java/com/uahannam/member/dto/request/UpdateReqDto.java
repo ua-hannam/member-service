@@ -4,7 +4,7 @@ import com.uahannam.member.entity.Member;
 import lombok.Getter;
 
 @Getter
-public class UpdateMemberReqDto {
+public class UpdateReqDto {
     private Long id;
     private String nickname;
     private String password;

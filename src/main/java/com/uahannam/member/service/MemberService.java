@@ -1,8 +1,7 @@
 package com.uahannam.member.service;
 
-import com.uahannam.member.dto.MemberDto;
 import com.uahannam.member.dto.request.LoginReqDto;
-import com.uahannam.member.dto.request.UpdateMemberReqDto;
+import com.uahannam.member.dto.request.UpdateReqDto;
 import com.uahannam.member.dto.response.LoginRegiResDto;
 import com.uahannam.member.dto.request.RegiReqDto;
 import com.uahannam.member.dto.response.RespDto;
@@ -63,7 +62,7 @@ public class MemberService {
                 .build();
     }
 
-    public void updateMember(UpdateMemberReqDto updateDto, Long memberId) {
+    public void updateMember(UpdateReqDto updateDto, Long memberId) {
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new CustomException(ErrorCode.MEMBER_NOT_FOUND_BY_ID));
         // 업데이트 로직: DTO의 값을 엔티티에 적용

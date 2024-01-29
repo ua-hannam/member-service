@@ -2,7 +2,7 @@ package com.uahannam.member.controller;
 
 import com.uahannam.member.dto.request.LoginReqDto;
 import com.uahannam.member.dto.request.RegiReqDto;
-import com.uahannam.member.dto.request.UpdateMemberReqDto;
+import com.uahannam.member.dto.request.UpdateReqDto;
 import com.uahannam.member.dto.response.LoginRegiResDto;
 import com.uahannam.member.dto.response.RespDto;
 import com.uahannam.member.service.MemberService;
@@ -43,7 +43,7 @@ public class MemberController {
     }
 
     @PutMapping("/{memberId}")
-    public ResponseEntity update(@RequestBody UpdateMemberReqDto updateDto, @PathVariable Long memberId) {
+    public ResponseEntity update(@RequestBody UpdateReqDto updateDto, @PathVariable Long memberId) {
         memberService.updateMember(updateDto, memberId);
         return ResponseEntity.ok(updateDto);
     }
