@@ -1,9 +1,11 @@
 package com.uahannam.member.dto.request;
 
 import com.uahannam.member.entity.Member;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
+@AllArgsConstructor
 public class UpdateReqDto {
     private String nickname;
     private String password;
