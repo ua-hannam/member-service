@@ -1,4 +1,4 @@
-package com.uahannam.member.dto.response;
+package com.uahannam.member.dto.response.member;
 
 import com.uahannam.member.dto.query.MemberDto;
 import lombok.Getter;

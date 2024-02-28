@@ -1,4 +1,4 @@
-package com.uahannam.member.dto.response;
+package com.uahannam.member.dto.response.member;
 
 import lombok.Builder;
 import lombok.Getter;

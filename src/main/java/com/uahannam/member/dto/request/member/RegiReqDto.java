@@ -1,4 +1,4 @@
-package com.uahannam.member.dto.request;
+package com.uahannam.member.dto.request.member;
 
 import com.uahannam.member.entity.Member;
 import com.uahannam.member.entity.Role;

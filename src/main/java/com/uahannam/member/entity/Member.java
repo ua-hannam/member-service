@@ -1,5 +1,6 @@
 package com.uahannam.member.entity;
 
+import jakarta.validation.constraints.Min;
 import lombok.*;
 
 import jakarta.persistence.*;
@@ -35,6 +36,7 @@ public class Member extends SysTimeCols {
     private String contact;
 
     @Column(nullable = false)
+    @Min(0)
     @Builder.Default
     private Integer balance = 0;
 
@@ -50,4 +52,6 @@ public class Member extends SysTimeCols {
     public void setContact(String contact) {
         this.contact = contact;
     }
+
+    public void setBalance(Integer balance) { this.balance = balance; }
 }

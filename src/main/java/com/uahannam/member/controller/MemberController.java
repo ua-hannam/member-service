@@ -1,10 +1,10 @@
 package com.uahannam.member.controller;
 
-import com.uahannam.member.dto.request.LoginReqDto;
-import com.uahannam.member.dto.request.RegiReqDto;
-import com.uahannam.member.dto.request.UpdateReqDto;
-import com.uahannam.member.dto.response.LoginRegiResDto;
-import com.uahannam.member.dto.response.RespDto;
+import com.uahannam.member.dto.request.member.LoginReqDto;
+import com.uahannam.member.dto.request.member.RegiReqDto;
+import com.uahannam.member.dto.request.member.UpdateReqDto;
+import com.uahannam.member.dto.response.member.LoginRegiResDto;
+import com.uahannam.member.dto.response.member.RespDto;
 import com.uahannam.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
