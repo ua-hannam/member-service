@@ -50,8 +50,9 @@ public class PointServiceImpl implements PointService {
 
         PaymentResponse paymentResponse = paymentServiceClient
                 .chargePoint(new PostDto(memberId, amount));
+        System.out.println(paymentResponse.toString());
 
-        if(paymentResponse.status() == PaymentStatus.SUCCESS) {
+        if (paymentResponse.status() == PaymentStatus.SUCCESS) {
             user.setBalance(user.getBalance() + amount);
             status = true;
         }

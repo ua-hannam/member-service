@@ -90,7 +90,6 @@ class MemberControllerTest {
             LoginRegiResDto regiResp = LoginRegiResDto.builder()
                     .message("Registration Successful")
                     .accessToken("accessToken")
-                    .refreshToken("refreshToken")
                     .build();
             given(memberService.registerMember(any(RegiReqDto.class)))
                     .willReturn(regiResp);
@@ -136,7 +135,6 @@ class MemberControllerTest {
             LoginRegiResDto loginResp = LoginRegiResDto.builder()
                     .message("Login Successful")
                     .accessToken("accessToken")
-                    .refreshToken("refreshToken")
                     .build();
             given(memberService.login(any(LoginReqDto.class)))
                     .willReturn(loginResp);

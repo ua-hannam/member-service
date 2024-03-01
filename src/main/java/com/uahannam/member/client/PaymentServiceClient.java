@@ -7,12 +7,12 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient("PaymentService")
+@FeignClient(value = "payment-service")
 public interface PaymentServiceClient {
 
-    @PostMapping("/payments")
+    @PostMapping("/payment")
     PaymentResponse usePoints(@RequestBody @Valid PostDto postDto);
 
-    @PostMapping("/payments/charge")
+    @PostMapping("/payment/charges")
     PaymentResponse chargePoint(@RequestBody @Valid PostDto postDto);
 }

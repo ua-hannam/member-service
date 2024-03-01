@@ -44,12 +44,10 @@ public class MemberService {
 
         // 토큰 생성
         String accessToken = "accessToken";
-        String refreshToken = "refreshToken";
 
         return LoginRegiResDto.builder()
                 .message("Registered Successfully")
                 .accessToken(accessToken)
-                .refreshToken(refreshToken)
                 .build();
     }
 
@@ -61,12 +59,10 @@ public class MemberService {
 
         // token 생성
         String accessToken = "accessToken";
-        String refreshToken = "refreshToken";
 
         return LoginRegiResDto.builder()
                 .message("Logined Successfully")
                 .accessToken(accessToken)
-                .refreshToken(refreshToken)
                 .build();
     }
 

@@ -8,5 +8,4 @@ import lombok.Getter;
 public class LoginRegiResDto {
     String message;
     String accessToken;
-    String refreshToken;
 }

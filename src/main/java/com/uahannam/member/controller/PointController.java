@@ -35,14 +35,16 @@ public class PointController {
      * @return 충전 결과
      */
     @PostMapping("/charge/{memberId}")
-    public ResponseEntity<Void> chargePoints(@PathVariable Long memberId, @RequestParam Integer amount) {
+    public ResponseEntity<PointResponseDto> chargePoints(@RequestHeader("X-CUSTOM-USER-ID") Long userId, @PathVariable Long memberId, @RequestParam Integer amount) {
+        System.out.println("=============================================" + userId);
+
         PointResponseDto chargeRes = pointService.chargePoints(memberId, amount);
 
         if (chargeRes.isStatus()) {
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.internalServerError().build();
+            return ResponseEntity.ok(chargeRes);
         }
+
+        return ResponseEntity.internalServerError().build();
     }
 
     /**
