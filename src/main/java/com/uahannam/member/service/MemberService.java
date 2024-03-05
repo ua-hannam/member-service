@@ -11,6 +11,7 @@ import com.uahannam.member.exception.CustomException;
 import com.uahannam.member.exception.ErrorCode;
 import com.uahannam.member.repository.MemberRepository;
 import com.uahannam.member.repository.RoleRepository;
+import com.uahannam.member.util.JwtUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +24,7 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     private final RoleRepository roleRepository;
+    private final JwtUtils jwtUtils;
 
     public RespDto getAllMembers() {
         return new RespDto(memberRepository.findAllMembersAsDto());
@@ -37,17 +39,12 @@ public class MemberService {
             throw new CustomException(ErrorCode.EMAIL_ALREADY_EXISTS, "이미 사용 중인 이메일 입니다.");
 
         // 비밀번호 암호화, 강도 체크 등등
-
         Role role = roleRepository.findById(regiReqDto.getRole())
                 .orElseThrow(() -> new CustomException(ErrorCode.ROLE_NOT_FOUND_BY_ID));
         memberRepository.save(regiReqDto.mapToMember(role));
 
-        // 토큰 생성
-        String accessToken = "accessToken";
-
         return LoginRegiResDto.builder()
                 .message("Registered Successfully")
-                .accessToken(accessToken)
                 .build();
     }
 
@@ -58,11 +55,11 @@ public class MemberService {
             throw new CustomException(ErrorCode.INVALID_PASSWORD);
 
         // token 생성
-        String accessToken = "accessToken";
+        String token = jwtUtils.createJwtToken(member.getId());
 
         return LoginRegiResDto.builder()
                 .message("Logined Successfully")
-                .accessToken(accessToken)
+                .accessToken(token)
                 .build();
     }
 
